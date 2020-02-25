@@ -16,51 +16,56 @@ class ResultPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('BMI CALCULATION'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.all(15.0),
-              alignment: Alignment.bottomLeft,
-              child: Text(
-                'Your Result',
-                style: kTitleTextStyle,
+      body: SingleChildScrollView(
+        child: IntrinsicHeight(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.all(15.0),
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    'Your Result',
+                    style: kTitleTextStyle,
+                  ),
+                ),
               ),
-            ),
-          ),
-          Expanded(
-            flex: 5,
-            child: ReusableCard(
-              colour: kActiveCardColour,
-              cardChild: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    resultText.toUpperCase(),
-                    style: kResultTextStyle,
+              Expanded(
+                flex: 5,
+                child: ReusableCard(
+                  colour: kActiveCardColour,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        resultText.toUpperCase(),
+                        style: kResultTextStyle,
+                      ),
+                      Text(
+                        bmiResult,
+                        style: kBMITextStyle,
+                      ),
+                      Text(
+                        interpretation,
+                        style: kBodyTextStyle,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
-                  Text(
-                    bmiResult,
-                    style: kBMITextStyle,
-                  ),
-                  Text(
-                    interpretation,
-                    style: kBodyTextStyle,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+                ),
               ),
-            ),
+              BottomButton(
+                  buttonTitle: 'RE-CALCULATE',
+                  onTap: () {
+                    Navigator.pop(context);
+                  }),
+            ],
           ),
-          BottomButton(
-              buttonTitle: 'RE-CALCULATE',
-              onTap: () {
-                Navigator.pop(context);
-              }),
-        ],
+        ),
       ),
     );
   }
